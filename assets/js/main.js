@@ -69,6 +69,29 @@
     });
   }
 
+  /* ── Philosophy Videos: scroll-activated expansion ──── */
+  function handlePhilVideos() {
+    const rows = document.querySelectorAll('.phil-row');
+    if (!rows.length) return;
+
+    // Activate when the row occupies the middle band of the viewport
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          entry.target.classList.toggle('phil-row--active', entry.isIntersecting);
+        });
+      },
+      {
+        // shrink the intersection zone: trigger when row is in the
+        // central ~65% of the viewport (10% margin top, 25% bottom)
+        rootMargin: '-10% 0px -25% 0px',
+        threshold: 0
+      }
+    );
+
+    rows.forEach(row => obs.observe(row));
+  }
+
   /* ── Hamburger Menu ─────────────────────────────────── */
   function handleHamburger() {
     const btn       = document.getElementById('nav-hamburger');
@@ -108,6 +131,7 @@
     handleNavScroll();
     handleStickyBar();
     handleScrollReveal();
+    handlePhilVideos();
     handleHamburger();
 
     // Re-align pill after fonts load
