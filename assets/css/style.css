@@ -491,6 +491,171 @@ section { position: relative; }
 }
 .pg-item:hover .pg-img { transform: scale(1.04); }
 
+/* ── Best Sellers Section ───────────────────────────────── */
+.bestsellers-section { padding: 0 0 140px 0; }
+
+.bestsellers-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.bestsellers-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 8px;
+}
+
+.bestsellers-title {
+  font-size: clamp(36px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.bestsellers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.bs-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  aspect-ratio: 3 / 4;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  border: 1px solid var(--border);
+  transition: transform 0.45s cubic-bezier(.22,.68,0,1.2),
+              box-shadow 0.45s ease;
+}
+.bs-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+}
+
+.bs-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(.22,.68,0,1.2);
+}
+.bs-box:hover .bs-video {
+  transform: scale(1.06);
+}
+
+.bs-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.05) 0%,
+    rgba(0,0,0,0.12) 40%,
+    rgba(0,0,0,0.65) 100%
+  );
+  z-index: 1;
+  transition: background 0.4s ease;
+}
+.bs-box:hover .bs-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.08) 0%,
+    rgba(0,0,0,0.18) 40%,
+    rgba(0,0,0,0.72) 100%
+  );
+}
+
+.bs-content {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  z-index: 2;
+  padding: 28px;
+  transform: translateY(4px);
+  transition: transform 0.4s ease;
+}
+.bs-box:hover .bs-content {
+  transform: translateY(0);
+}
+
+.bs-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 100px;
+  padding: 5px 12px;
+  margin-bottom: 14px;
+}
+
+.bs-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+.bs-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease 0.05s, transform 0.35s ease 0.05s;
+}
+.bs-box:hover .bs-desc {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bs-arrow {
+  position: absolute;
+  top: 24px; right: 24px;
+  z-index: 2;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity 0.35s ease, transform 0.35s ease,
+              background 0.25s ease;
+}
+.bs-arrow svg {
+  width: 16px; height: 16px;
+  stroke: var(--white);
+  fill: none;
+}
+.bs-box:hover .bs-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.bs-arrow:hover {
+  background: rgba(255,255,255,0.2);
+}
+
 /* ── Philosophy Section ────────────────────────────────── */
 .philosophy-section { padding: 0 0 140px 0; }
 
@@ -1163,6 +1328,8 @@ footer {
   .phil-row           { grid-template-columns: 56px 1fr; }
   .phil-right         { display: none; }
   .formula-anim-wrap  { display: none; }
+  .bestsellers-grid   { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .bs-box:nth-child(3){ grid-column: 1 / -1; aspect-ratio: 16 / 9; }
   .proof-top          { flex-direction: column; gap: 24px; padding-bottom: 48px; margin-bottom: 48px; }
   .proof-right        { max-width: 100%; }
   .reviews-grid       { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -1212,6 +1379,16 @@ footer {
   /* Product image grid */
   .product-grid       { grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: 6px; }
   .pg-item-tall       { grid-column: auto; grid-row: auto; aspect-ratio: 1; }
+
+  /* Best Sellers */
+  .bestsellers-section { padding: 0 0 80px; }
+  .bestsellers-header { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 28px; }
+  .bestsellers-grid   { grid-template-columns: 1fr; gap: 12px; }
+  .bs-box             { aspect-ratio: 4 / 3; }
+  .bs-box:nth-child(3){ aspect-ratio: 4 / 3; grid-column: auto; }
+  .bs-name            { font-size: 24px; }
+  .bs-desc            { opacity: 1; transform: none; }
+  .bs-arrow           { opacity: 1; transform: none; width: 36px; height: 36px; top: 18px; right: 18px; }
 
   /* Philosophy — vertical card layout with cinematic video strip */
   .philosophy-section { padding: 0 0 80px; }

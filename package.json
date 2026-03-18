@@ -1,0 +1,12 @@
+{
+  "name": "luxury-skincare-ecommerce",
+  "version": "1.0.0",
+  "description": "Luxury skincare ecommerce website",
+  "scripts": {
+    "dev": "live-server --port=5500",
+    "start": "live-server --port=5500"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
